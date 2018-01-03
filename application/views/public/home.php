@@ -1,11 +1,6 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>CMS</title>
-</head>
-
-<body>
-	<h1>Home Page</h1>
-</body>
-</html>
+<?php include('public_header.php'); ?>
+<div class="container">
+	<h1>Home</h1>
+	
+</div>
+<?php include('public_footer.php'); ?>
