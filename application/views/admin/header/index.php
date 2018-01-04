@@ -11,11 +11,18 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			</div>
 		</div>
 	</div>
-	
 	<?php endif; ?>
-		
 	<div class="col-lg-7 col-md-3 col-sm-4">
-		<h1>Showing header data</h1>
+	<?php if(isset($header_data->title)): ?>
+		<h1><?= $header_data->title ?></h1>
+	<?php else: ?>
+		<h1>Add title</h1>
+	<?php endif; ?>
+	<?php if(isset($header_data->image_path)): ?>
+		<h1><?= $header_data->image_path ?></h1>
+	<?php else: ?>
+		<h1>Add logo</h1>
+	<?php endif; ?>
 	</div>
 	
 </div>

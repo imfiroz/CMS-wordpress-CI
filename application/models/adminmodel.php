@@ -3,8 +3,7 @@ class Adminmodel extends CI_model{
 	
 	public function login_valid($username, $password){
 		
-		//fetch data from database
-		
+		//fetch data from users database
 		$q = $this->db->where(['username'=>$username, 'password'=>$password])
 						->get('users');
 		if($q->num_rows()){ //return number for rows

@@ -9,7 +9,6 @@ class admin extends MY_Controller{
 		$this->load->helper('form');
 		$this->load->view('public/admin_login');
 		
-		
 	}
 	public function login_form(){
 		

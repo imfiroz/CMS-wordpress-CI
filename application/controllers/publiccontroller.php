@@ -1,6 +1,6 @@
 <?php
 
-class Publiccontroller extends MY_Controller{
+class Publiccontroller extends CI_Controller{
 	
 	public function index(){
 		
