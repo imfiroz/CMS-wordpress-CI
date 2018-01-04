@@ -4,7 +4,7 @@
 		  <fieldset>
 			<legend>Admin Login</legend>
 			<?php if($error_msg = $this->session->flashdata('loggin_invalid')): ?>
-			<div class="row">
+			<div class="row"><!--Setting loggin error message-->
 				<div class="col-lg-6">
 					<div class="alert alert-dismissible alert-danger">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>

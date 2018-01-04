@@ -1,4 +1,6 @@
-<?php include('admin_header.php'); ?>
+<?php 
+include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
+?>
 <div class="container">
 	<?php if($log_msg = $this->session->flashdata('loggin_success')): ?>
 	<div class="row">
@@ -9,11 +11,14 @@
 			</div>
 		</div>
 	</div>
+	
 	<?php endif; ?>
 		
 	<div class="col-lg-7 col-md-3 col-sm-4">
-		<h1>Admin Dasboard</h1>
+		<h1>Showing header data</h1>
 	</div>
 	
 </div>
-<?php include('admin_footer.php'); ?>
+<?php 
+include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_footer.php");
+?>

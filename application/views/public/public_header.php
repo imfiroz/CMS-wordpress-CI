@@ -2,15 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
-
-<body>
-</body>
-</html><!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
 <title>CMS</title>
 <?= link_tag('assets/css/bootstrap.min.css') ?>
 </head>
@@ -32,7 +23,7 @@
         <li><a href="#">Link</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><?= anchor('admin','Login')  ?></li>
       </ul>
     </div>
   </div>

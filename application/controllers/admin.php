@@ -29,7 +29,9 @@ class admin extends MY_Controller{
 			if($user_id){//cradentials valid
 				//setting session  user_id variable
 				$this->session->set_userdata('user_id',$user_id);
-				return redirect('admin/index');
+				//flashing message for success login 
+				$this->session->set_flashdata('loggin_success', 'Loggin successful');
+				return redirect('admin');
 			}else{
 				//cradentials not valid
 				//flashing invalid login message to login page 
@@ -43,7 +45,7 @@ class admin extends MY_Controller{
 		}
 	}
 	public function logout(){
-		
+		//logout and redirected to login page
 		$this->session->unset_userdata('user_id');
 		return redirect('admin');
 	}

@@ -19,12 +19,21 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+       	<li><?= anchor('publiccontroller','View Home')  ?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Logout</a></li>
+        <li><?= anchor('admin/logout','Logout')  ?></li>
       </ul>
     </div>
   </div>
 </nav>
+<!--Admin controlles-->
+<div class="col-lg-3 col-md-3 col-sm-4">
+	<div class="list-group table-of-contents">
+		<?= anchor('header','Header Setting', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('admin/logout','Add Menus', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('admin/logout','Add Pages', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('admin/logout','Blog', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('admin/logout','Plugin', ['class'=> 'list-group-item'])  ?>
+	</div>
+</div>
