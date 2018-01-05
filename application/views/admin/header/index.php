@@ -3,6 +3,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 ?>
 <div class="container">
 	<div class="col-lg-7 col-md-3 col-sm-4">
+		<h3>Header Setting</h3>
 		<?php if($feedback_msg = $this->session->flashdata('feedback')): ?>
 		<div class="row">
 			<div class="col-lg-9">
@@ -13,11 +14,10 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			</div>
 		</div>
 		<?php endif; ?>
-	
-		<h3>Header Setting</h3>
 		<?php if(isset($header_data->id)): ?><!--checking title-->
 
 			<h1><?= $header_data->title ?></h1>
+			<h1><?= $header_data->logo_path ?></h1>
 
 		<?php else: ?>
 				<table class="table table-striped table-hover ">

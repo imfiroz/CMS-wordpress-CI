@@ -25,8 +25,10 @@ class Header extends MY_Controller{
 			return $this->_falshAndRedirect($this->headermodel->add_header($post), 'Data Added Succcessfully', 'Data not Inserted');
 		else:
 		
-		$this->load->helper('form');
-		$this->load->view('admin/header/add_header',['header_data'=>'add_title']);	
+			$this->load->helper('form');
+			$upload_error = $this->upload->display_errors();
+			$this->load->view('admin/header/add_header', compact('upload_error'));
+			
 		endif;
 		
 	}
