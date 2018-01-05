@@ -1,8 +1,8 @@
 <?php
 class headermodel extends CI_Model{
 	
-	public function get(){
-		//fetch data from header database
+	public function get()
+	{//fetch data from header database
 		$query = $this->db
 							->get('header');
 		if($query->num_rows()){ //return number for rows
@@ -11,7 +11,24 @@ class headermodel extends CI_Model{
 			return FALSE; 
 		}
 	}
-	public function add_header($array){
+	public function add_header($array)
+	{
 		return $this->db->insert('header',$array);
+	}
+	public function delete_header($id){
+		return $this->db->delete('header', ['id' => $id]);
+	}
+	public function update_header($header_id, array $array)
+	{
+		return $this->db
+						->where('id', $header_id)
+						->update('header', $array);
+	}
+	public function find_header($id)
+	{
+		$query = $this->db
+							->where('id' , $id)
+							->get('header');
+		return $query->row();
 	}
 }
