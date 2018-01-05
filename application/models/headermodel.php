@@ -11,4 +11,7 @@ class headermodel extends CI_Model{
 			return FALSE; 
 		}
 	}
+	public function add_header($array){
+		return $this->db->insert('header',$array);
+	}
 }
