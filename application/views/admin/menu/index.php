@@ -19,7 +19,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			<h3 class="panel-title">Menu Setting</h3>
 		  </div>
 		  <div class="panel-body">
-		  	<?= anchor("header/edit_header/",'Add New Menu', ['class'=>'btn btn-default btn-sm'])?>
+		  	<?= anchor("menus/add_menu/",'Add New Menu', ['class'=>'btn btn-default btn-sm'])?>
 			<hr>
 			<?php //if(isset($menu_data->id)): ?><!--checking title-->
 			<table class="table table-striped table-hover ">
@@ -37,9 +37,9 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 				  		<td><p>home</p></td>
 				  		<td><p>2</p></td>
 				  		<td>
-				  			<?= anchor("header/edit_header/",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
-				  			<?= anchor("header/edit_header/",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
-				  			<?= anchor("header/edit_header/",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
+				  			<?= anchor("menu/edit_menu/",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
+				  			<?= anchor("menu/delete_menu/",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
+				  			<?= anchor("",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
 				  		</td>
 					  </td>
 					</tr>

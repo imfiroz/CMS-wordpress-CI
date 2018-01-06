@@ -9,7 +9,14 @@ $config = [
 											'rules' => 'required'
 										],
 										
+									],
+			'add_menu_rules'  => 	[
+										[
+											'field' => 'menu_title',
+											'lable' => 'Menu Name',
+											'rules' => 'required'
+										]
+										
 									]
-									
 	
 ];
