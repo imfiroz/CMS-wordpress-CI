@@ -2,7 +2,6 @@
 class Header extends MY_Controller{
 	public function index()
 	{	
-		
 		$this->load->model('headermodel');
 		$header_data = $this->headermodel->get();
 		$this->load->view('admin/header/index',['header_data'=>$header_data]);

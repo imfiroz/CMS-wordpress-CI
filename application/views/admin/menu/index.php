@@ -16,40 +16,43 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 		<?php endif; ?>
 		<div class="panel panel-default">
 		  <div class="panel-heading">
-			<h3 class="panel-title">Header Setting</h3>
+			<h3 class="panel-title">Menu Setting</h3>
 		  </div>
 		  <div class="panel-body">
-			<?php if(isset($header_data->id)): ?><!--checking title-->
+		  	<?= anchor("header/edit_header/",'Add New Menu', ['class'=>'btn btn-default btn-sm'])?>
+			<hr>
+			<?php //if(isset($menu_data->id)): ?><!--checking title-->
 			<table class="table table-striped table-hover ">
 				  <thead>
 					<tr>
-					  <th>Title</th>
-					  <th>Logo</th>
-					  <th colspan="2">Action</th>
+					  <th>Sr</th>
+					  <th>Menu title</th>
+					  <th>Order</th>
+					  <th>Action</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<tr>
-					  <td><p class="lead"><?= $header_data->title ?></p></td>
-					  <td><?= img(array('src' => $header_data->logo_path, 'width' => '100',
-        'height'=> '100')) ?></td>
-					  <td colspan="2">
-					  <?= anchor("header/edit_header/{$header_data->id}",'Change', ['class'=>'btn btn-info btn-sm'])  ?>
-					  <?= anchor("header/delete_header/{$header_data->id}",'Remove', ['class'=>'btn btn-info btn-sm'])  ?>
+				  		<td><p>1</p></td>
+				  		<td><p>home</p></td>
+				  		<td><p>2</p></td>
+				  		<td>
+				  			<?= anchor("header/edit_header/",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
+				  			<?= anchor("header/edit_header/",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
+				  			<?= anchor("header/edit_header/",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
+				  		</td>
 					  </td>
 					</tr>
-				  </tbody>
-				</table> 
-		<?php else: ?>
+				<!--  </tbody>
+				</table> -->
+		<?php //else: ?>
 				
 				  <tbody>
 					<tr>
-					  <td colspan="3"><p class="text-danger">Title and Logo Not Set Yet.</p></td>
-					  <td><?= anchor('header/add_header','Add', ['class'=>'btn btn-info btn-sm'])  ?></td>
-					</tr>
+					  <td colspan="4"><p class="text-danger">Title and Logo Not Set Yet.</p></td>
 				  </tbody>
 				</table> 
-		<?php endif; ?>
+		<?php //endif; ?>
 		  </div>
 		</div>
 	</div>

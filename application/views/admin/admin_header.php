@@ -32,7 +32,7 @@
 <div class="col-lg-3 col-md-3 col-sm-4">
 	<div class="list-group table-of-contents">
 		<?= anchor('header','Header Setting', ['class'=> 'list-group-item'])  ?>
-		<?= anchor('admin/logout','Add Menus', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('menus','Add Menus', ['class'=> 'list-group-item'])  ?>
 		<?= anchor('admin/logout','Add Pages', ['class'=> 'list-group-item'])  ?>
 		<?= anchor('admin/logout','Blog', ['class'=> 'list-group-item'])  ?>
 		<?= anchor('admin/logout','Plugin', ['class'=> 'list-group-item'])  ?>
