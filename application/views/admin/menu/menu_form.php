@@ -8,16 +8,17 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			<h3 class="panel-title">Add Menu</h3>
 		  </div>
 		  <div class="panel-body">
-			<?= form_open("menus/save_menu", 'class="form-horizontal"'); ?> 
+		  <!--Applying condtion for update and insert task-->
+			<?= form_open(
+					isset($menu_data) ? "menus/update_menu/{$menu_data->id}" : "menus/save_menu", 'class="form-horizontal"'); ?> 
 			  <?= form_hidden('user_id', $this->session->userdata('user_id'))?>
-			  <?= form_hidden('order', $this->session->userdata('user_id'))?>
-			  <?= form_hidden('created', date('Y-m-d H:i:s'))?>
+			  <?= form_hidden(isset($menu_data) ? 'modified' : 'created', date('Y-m-d H:i:s'))?>
 			  <fieldset>
 			  
 						<div class="form-group">
 							<label for="inputEmail" class="col-lg-3 control-label">Menu Name:</label>
 							<div class="col-lg-6 col-lg-offset-1">
-							<?= form_input( ['name'=>'menu_title', 'class'=>'form-control', 'id'=>'inputEmail', 'placeholder'=>'Enter Menu Name', 'value'=>set_value('menu_title')])?>
+							<?= form_input( ['name'=>'menu_title', 'class'=>'form-control', 'id'=>'inputEmail', 'placeholder'=>'Enter Menu Name', 'value'=>set_value('menu_title', isset($menu_data) ? $menu_data->menu_title : false)])?>
 							</div>
 						</div>
 						<div class="col-lg-6">

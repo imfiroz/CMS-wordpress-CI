@@ -73,13 +73,7 @@ class Header extends MY_Controller{
 		$this->_falshAndRedirect($this->headermodel->delete_header($header_id), 'Title and Logo removed Succcessfully', 'Remove operation failed!');
 	}
 	
-	//Creating constructer for checking user logged
-	public function __construct(){
-		parent::__construct();
-		if(! $this->session->userdata('user_id'))
-			return redirect('admin/login_form');
-			
-	}
+
 	//Created flash message and redirect function
 	private function _falshAndRedirect($successful, $successMessage, $failureMessage){
 		if($successful){

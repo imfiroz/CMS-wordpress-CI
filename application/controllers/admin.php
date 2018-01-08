@@ -1,6 +1,6 @@
 <?php
 
-class admin extends MY_Controller{
+class admin extends CI_Controller{
 	
 	public function index(){
 		if($this->session->userdata('user_id')) //preventing loggedin user to access this page

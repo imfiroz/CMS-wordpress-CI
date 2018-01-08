@@ -21,7 +21,6 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 		  <div class="panel-body">
 		  	<?= anchor("menus/add_menu/",'Add New Menu', ['class'=>'btn btn-default btn-sm'])?>
 			<hr>
-			<?php //if(isset($menu_data->id)): ?><!--checking title-->
 			<table class="table table-striped table-hover ">
 				  <thead>
 					<tr>
@@ -29,30 +28,43 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 					  <th>Menu title</th>
 					  <th>Order</th>
 					  <th>Action</th>
+					  <th>Visibility</th>
 					</tr>
 				  </thead>
 				  <tbody>
+		<?php if(  $menus_data	): 
+				$count = 0;
+				foreach( $menus_data as $menu_data ): 
+				$count++;
+		?>
 					<tr>
-				  		<td><p>1</p></td>
-				  		<td><p>home</p></td>
-				  		<td><p>2</p></td>
+				  		<td><p><?= $count ?></p></td>
+				  		<td><p><?= $menu_data->menu_title ?></p></td>
 				  		<td>
-				  			<?= anchor("menu/edit_menu/",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
-				  			<?= anchor("menu/delete_menu/",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
-				  			<?= anchor("",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
+				  			<p>
+							<?= $menu_data->menu_order ?>
+							<?= anchor("",'Change Order', ['class'=>'btn btn-info btn-sm'])  ?>
+				  			</p>
 				  		</td>
+				  		<td>
+				  			<?= anchor("menus/edit_menu/{$menu_data->id}",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
+				  			<?= anchor("menus/delete_menu/{$menu_data->id}",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
+				  		</td>
+				  		<td>
+				  			<?= anchor("",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
+						</td>
 					  </td>
 					</tr>
-				<!--  </tbody>
-				</table> -->
-		<?php //else: ?>
 				
-				  <tbody>
+			<?php endforeach;
+				else: 
+			?>
 					<tr>
-					  <td colspan="4"><p class="text-danger">Title and Logo Not Set Yet.</p></td>
-				  </tbody>
+					  <td colspan="5"><p class="text-danger">Title and Logo Not Set Yet.</p></td>
+					<tr>
+			<?php endif; ?>
+	  			 </tbody>
 				</table> 
-		<?php //endif; ?>
 		  </div>
 		</div>
 	</div>
