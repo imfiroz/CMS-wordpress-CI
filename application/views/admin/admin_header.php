@@ -33,8 +33,8 @@
 	<div class="list-group table-of-contents">
 		<?= anchor('header','Header Setting', ['class'=> 'list-group-item'])  ?>
 		<?= anchor('menus','Add Menus', ['class'=> 'list-group-item'])  ?>
-		<?= anchor('admin/logout','Add Pages', ['class'=> 'list-group-item'])  ?>
-		<?= anchor('admin/logout','Blog', ['class'=> 'list-group-item'])  ?>
-		<?= anchor('admin/logout','Plugin', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('pages','Add Pages', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('blog','Blog', ['class'=> 'list-group-item'])  ?>
+		<?= anchor('plugins','Plugin', ['class'=> 'list-group-item'])  ?>
 	</div>
 </div>

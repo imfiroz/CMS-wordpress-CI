@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 	<div class="col-lg-7 col-md-3 col-sm-4">
 		<div class="panel panel-default">
 		  <div class="panel-heading">
-			<h3 class="panel-title">Add Menu</h3>
+			<h3 class="panel-title">Menu Setting</h3>
 		  </div>
 		  <div class="panel-body">
 		  <!--Applying condtion for update and insert task-->
@@ -14,7 +14,8 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			  <?= form_hidden('user_id', $this->session->userdata('user_id'))?>
 			  <?= form_hidden(isset($menu_data) ? 'modified' : 'created', date('Y-m-d H:i:s'))?>
 			  <fieldset>
-			  
+			  <legend><?= isset($menu_data) ? "Edit Menu" : "Add Menu" ?></legend>
+					<hr>
 						<div class="form-group">
 							<label for="inputEmail" class="col-lg-3 control-label">Menu Name:</label>
 							<div class="col-lg-6 col-lg-offset-1">
