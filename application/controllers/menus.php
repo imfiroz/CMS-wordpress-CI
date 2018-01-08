@@ -64,6 +64,12 @@ class Menus extends MY_Controller {
 		$this->load->model('menumodel');
 		return $this->_falshAndRedirect($this->menumodel->delete($menu_id), 'Selected menu deleted successfully', 'Menu not deleted');
 	}
+	public function visibility($menu_id, $visibility)
+	{	//Changing visibility to published or Unpublish
+		$this->load->model('menumodel');
+		$mode = ($visibility == 1) ? 2 : 1 ; //Visibile mode condtion
+		return $this->_falshAndRedirect($this->menumodel->update($menu_id, ['visibility' => $mode]), 'Visibility Changed Successfully', 'Visibility Not Changed, try again');
+	}
 	//Created flash message and redirect function
 	private function _falshAndRedirect($successful, $successMessage, $failureMessage){
 		if(	$successful	)

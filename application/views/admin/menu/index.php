@@ -50,8 +50,8 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 				  			<?= anchor("menus/edit_menu/{$menu_data->id}",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
 				  			<?= anchor("menus/delete_menu/{$menu_data->id}",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
 				  		</td>
-				  		<td>
-				  			<?= anchor("",'Publish', ['class'=>'btn btn-info btn-sm'])  ?>
+				  		<td><!--Setting menu visibility using visibility controller-->
+				  			<?= anchor("menus/visibility/{$menu_data->id}/{$menu_data->visibility}",( $menu_data->visibility > 1 ? 'Published' : 'Unpublish'), ['class'=>'btn btn-info btn-sm'])  ?>
 						</td>
 					  </td>
 					</tr>

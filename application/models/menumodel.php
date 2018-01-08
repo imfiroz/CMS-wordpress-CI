@@ -39,4 +39,5 @@ class Menumodel extends CI_Model
 	{
 		return $this->db->delete('menus', ['id' => $menu_id]);
 	}
+	
 }
