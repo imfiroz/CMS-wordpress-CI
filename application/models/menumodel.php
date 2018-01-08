@@ -39,5 +39,11 @@ class Menumodel extends CI_Model
 	{
 		return $this->db->delete('menus', ['id' => $menu_id]);
 	}
-	
+	public function find_order($order)
+	{
+		$query = $this->db
+						->where('menu_order', $order)
+						->get('menus');
+		return $query->row();
+	}
 }

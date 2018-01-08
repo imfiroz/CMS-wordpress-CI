@@ -3,6 +3,7 @@ class Menus extends MY_Controller {
 	
 	public function index()
 	{
+		$this->load->helper('form');
 		$this->load->model('menumodel');
 		$menus_data = $this->menumodel->list_menu();
 		$this->load->view('admin/menu/index', compact('menus_data'));
@@ -20,11 +21,20 @@ class Menus extends MY_Controller {
 			$this->load->model('menumodel');
 			$this->menumodel->get();
 			$post = $this->input->post();
-			if( $this->menumodel->get() )
-			{
-				$post['menu_order'] = $this->menumodel->get();
-				$post['menu_order'] ++; //Increamenting menu order
+			if( $rows = $this->menumodel->get() )
+			{ //Add menu order
+				for($i = 1; $i <= $rows; $i++):
+					
+					if(!$this->menumodel->find_order($i))://if Menu order is not found in menu table then add  
+						$post['menu_order'] = $i;
 				
+					else: //Else add incremental menu order
+				
+						( $rows == $i ) ? ($post['menu_order'] = $rows ++) : ''; 
+						
+					endif;
+					
+				endfor;
 			}
 			else
 			{
@@ -32,6 +42,8 @@ class Menus extends MY_Controller {
 			}
 			$post['visibility'] = 1; //Setting default menu visibility is unpublish
 			unset($post['submit']);
+			//echo '<pre>';
+			//print_r($post); exit;
 			$this->load->model('menumodel');
 			return $this->_falshAndRedirect($this->menumodel->save_menu($post), 'Menu Added Successfully', 'Menu not Inserted');
 			
@@ -70,8 +82,22 @@ class Menus extends MY_Controller {
 		$mode = ($visibility == 1) ? 2 : 1 ; //Visibile mode condtion
 		return $this->_falshAndRedirect($this->menumodel->update($menu_id, ['visibility' => $mode]), 'Visibility Changed Successfully', 'Visibility Not Changed, try again');
 	}
-	//Created flash message and redirect function
-	private function _falshAndRedirect($successful, $successMessage, $failureMessage){
+	public function short_menu($menu_id)
+	{
+		//Change menu order controller
+		$post = $this->input->post();
+		$this->load->model('menumodel');
+		//finding existing order
+		$ext_order_menu = $this->menumodel->find_order($post['menu_order']);
+		//changing old menu order number to current order number
+		$this->menumodel->update($ext_order_menu->id, ['menu_order' => $post['old_order'] ]);
+		//Changing selected menu order number to selected order number
+		unset($post['old_order']);
+		return $this->_falshAndRedirect($this->menumodel->update($menu_id, $post), 'Menu Order Changed Successfully', 'Menu Order Not Changed, try again');
+	}
+	private function _falshAndRedirect($successful, $successMessage, $failureMessage)
+	{
+		//Created flash message and redirect function
 		if(	$successful	)
 		{
 			$this->session->set_flashdata('feedback', $successMessage);
