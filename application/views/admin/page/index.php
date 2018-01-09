@@ -32,21 +32,38 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 						</tr>
 					  </thead>
 					  <tbody>
+					  <?php 
+						//echo '<pre>';
+						$count = 1;
+						if($pages_data)
+						{
+							foreach($pages_data as $page_data):
+					   ?>
 					  	<tr>
-					  		<td>1</td>
-					  		<td>Welcome Page XXXX XXXXX xxXX XXX XX</td>
-					  		<td>Home</td>
+					  		<td><?= $count++ ?></td>
+					  		<td><?= $page_data->title ?></td>
+					  		<td><?= $page_data->menu_id ?></td>
 					  		<td>
-					  		<?= anchor("pages/visibility/",'Unpublish', ['class'=>'btn btn-info btn-sm'])  ?>
+					  		<?= anchor("pages/visibility/",($page_data->visibility == 2 ) ? 'Published' : 'Unpublise', ['class'=>'btn btn-info btn-sm'])  ?>
 					  		</td>
 					  		<td>
-					  			<?= anchor("pages/edit_page",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
-				  				<?= anchor("pages/delete_page",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
+					  			<?= anchor("pages/edit_page/{$page_data->id}",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>
+				  				<?= anchor("pages/delete_page/{$page_data->id}",'Delete', ['class'=>'btn btn-danger btn-sm'])  ?>
 					  		</td>
 					  	</tr>
-					  	<tr>
+					  	<?php
+							endforeach;
+						  }
+						  else
+						  {
+						?>
+				  		<tr>
 					  		<td colspan="5"><p class="text-danger">Page not add yet, add page.</p></td>
 					  	</tr>
+					  	<?php	  
+						  } //end of if statment
+						?>
+					  	
 					  </tbody>
 				</table>
 			</div>

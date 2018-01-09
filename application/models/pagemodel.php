@@ -15,4 +15,13 @@ class Pagemodel extends CI_Model
 						->get('pages');
 		return $query->result();
 	}
+	public function get_pages()
+	{
+		$query = $this->db->get('pages');
+		return $query->result();
+	}
+	public function delete($page_id)
+	{
+		return $this->db->delete('pages',['id' => $page_id]);
+	}
 }
