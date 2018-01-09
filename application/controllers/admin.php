@@ -29,6 +29,7 @@ class admin extends CI_Controller{
 				//setting session  user_id variable
 				$this->session->set_userdata('user_id',$user_id);
 				//flashing message for success login 
+				
 				$this->session->set_flashdata('loggin_success', 'Loggin successful');
 				return redirect('admin');
 			}else{

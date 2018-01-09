@@ -110,7 +110,4 @@ class Menus extends MY_Controller {
 		}
 		return redirect('menus');
 	}
-	
-	
-	
 }
