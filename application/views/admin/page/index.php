@@ -44,7 +44,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 					  		<td><?= $page_data->title ?></td>
 					  		<td><?= $page_data->menu_id ?></td>
 					  		<td>
-					  		<?= anchor("pages/visibility/",($page_data->visibility == 2 ) ? 'Published' : 'Unpublise', ['class'=>'btn btn-info btn-sm'])  ?>
+					  		<?= anchor("pages/visibility/{$page_data->id}/{$page_data->menu_id}",($page_data->visibility == 2 ) ? 'Published' : 'Unpublise', ['class'=>'btn btn-info btn-sm'])  ?>
 					  		</td>
 					  		<td>
 					  			<?= anchor("pages/edit_page/{$page_data->id}",'Change', ['class'=>'btn btn-primary btn-sm'])  ?>

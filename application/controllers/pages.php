@@ -61,9 +61,42 @@ class Pages extends MY_Controller{
 		$this->load->model('pagemodel');
 		return $this->_falshAndRedirect($this->pagemodel->delete($page_id), 'Page Deleted Successfully', 'Page not Deleted, Try Again');
 	}
-	public function visibility()
+	public function visibility($page_id, $menu_id)
 	{
-		echo 'Change Visibility';
+		$this->load->model('pagemodel');
+		$page_data = $this->pagemodel->get_page('id',$page_id,'visibility');
+		//converting std object to array
+		foreach($page_data as $value)
+		{	///Getting page visibility on that menu 
+			$current_visibilty['visibility'] = $value->visibility;
+		}   
+		$pb_page_data = $this->pagemodel->get_page('menu_id',$menu_id,'*');
+		$pb_visibilty  = NULL;
+		foreach(	$pb_page_data as $value	)
+		{	///Finding published page on that menu 
+			 ($value->visibility == 2 ) ? $pb_visibilty = $value->id   : FALSE;
+		}
+		if(	$pb_visibilty	)
+		{
+			if($pb_visibilty == $page_id): //Changing Publish Page to Unpublish 
+			//***Update Publish Page to Unpublish**
+				$success = $this->pagemodel->update($pb_visibilty, ['visibility' => 1] );
+			else:
+			//***Interchange visibilty status**
+				//**Published page to unpublish**
+				$this->pagemodel->update($pb_visibilty, ['visibility' =>$current_visibilty['visibility']] );
+				//**Changing current page visibility to publish**
+				$pb_v = ($current_visibilty['visibility'] == 1) ? 2 : 1 ;
+				$success = $this->pagemodel->update($page_id, ['visibility' => $pb_v] );
+				
+			endif;
+		}
+		else
+		{	//**if first time selected change to publish**
+			$success = $this->pagemodel->update($page_id, ['visibility' => 2]);
+		}
+		return $this->_falshAndRedirect($success, 'Page Visibility Changed Successfully', 'Page Visibility Not Changed, Try Again');
+		
 	}
 	private function _falshAndRedirect($successful, $successMessage, $failureMessage)
 	{

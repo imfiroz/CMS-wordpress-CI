@@ -20,6 +20,12 @@ class Pagemodel extends CI_Model
 		$query = $this->db->get('pages');
 		return $query->result();
 	}
+	public function update($id, array $array)
+	{
+		return $this->db
+						->where('id', $id)
+						->update('pages', $array);
+	}
 	public function delete($page_id)
 	{
 		return $this->db->delete('pages',['id' => $page_id]);
