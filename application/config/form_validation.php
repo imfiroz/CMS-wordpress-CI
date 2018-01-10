@@ -32,6 +32,18 @@ $config = [
 	
 										],
 
-									],
-	
-];
+										],
+			'add_blog_rules'  => 	[
+											[
+												'field' => 'title',
+												'lable' => 'Title',
+												'rules' => 'required'
+											],
+											[
+												'field' => 'body',
+												'lable' => 'Body',
+												'rules' => 'required',
+											]
+										],
+
+	];

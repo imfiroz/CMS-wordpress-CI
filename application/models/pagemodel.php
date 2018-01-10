@@ -3,8 +3,6 @@ class Pagemodel extends CI_Model
 {
 	public function add(array $array)
 	{
-		//echo '<pre>';
-		//print_r($array); exit;
 		return $this->db->insert('pages', $array);
 	}
 	public function get_page($filed, $value, $select)
