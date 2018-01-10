@@ -7,7 +7,7 @@ class Blog extends MY_Controller
 		$this->load->model('blogmodel');
 		$this->load->library('pagination');
 		$config = [
-			'base_url'			=> base_url('blog'),
+			'base_url'			=> base_url('blog/index'),
 			'per_page'			=> 5,
 			'total_rows'		=> $this->blogmodel->num_rows(),
 			'full_tag_open'		=> "<ul class='pagination'>",
