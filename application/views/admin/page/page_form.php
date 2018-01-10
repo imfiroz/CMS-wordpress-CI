@@ -28,13 +28,17 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 					<div class="form-group">
 					  <label for="select" class="col-lg-2 control-label">Menu</label>
 					  <div class="col-lg-10">
-					  	<?= form_dropdown('menu_id', $menu_title, '', ['class' => 'form-control']); ?>
+					  	<?= form_dropdown('menu_id', $menu_title, 
+							set_value('menu_id', isset($page_data) ? $page_data->menu_id : false), 
+							['class' => 'form-control']); ?>
 					  </div>
 					</div>
 					<div class="form-group">
 					  <label for="textArea" class="col-lg-2 control-label">Content</label>
 					  <div class="col-lg-10">
-						<textarea name="content" class="form-control" rows="3" id="textArea"></textarea>
+						<textarea name="content" class="form-control" rows="3" id="textArea">
+							<?= set_value('content', isset($page_data) ? $page_data->content : false) ?>
+						</textarea>
 						<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
 					  </div>
 					</div>

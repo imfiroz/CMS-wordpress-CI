@@ -12,7 +12,7 @@ class Pages extends MY_Controller{
 		$menu_title = $this->menu();
 		$this->load->view('admin/page/page_form', compact('menu_title') );
 	}
-	public function menu()
+	public function menu($page_id = NULL)
 	{
 		$this->load->model('menumodel');
 		$menu_data = $this->menumodel->list_menu();
@@ -20,14 +20,14 @@ class Pages extends MY_Controller{
 		$this->load->model('pagemodel');
 		$menu_pb = array();
 		foreach(	$menu_data as $value	):
-			$page_data =  $this->pagemodel->get_page('menu_id', $value->id, 'visibility'); 
-			foreach(	$page_data as $pg_visibility	) //Getting page visiblity with that menu id
-			{
-				if(	$pg_visibility->visibility == 2 ):///If page visibility is published with that menu id then removed
-					$menu_pb[$value->id] = $value->menu_title;
+			//$page_data =  $this->pagemodel->get_page('menu_id', $value->id, 'visibility'); 
+			//foreach(	$page_data as $pg_visibility	) //Getting page visiblity with that menu id
+			//{
+				//if(	$pg_visibility->visibility == 2 ):///If page visibility is published with that menu id then removed
+					//$menu_pb[$value->id] = $value->menu_title;
 
-				endif;
-			}
+				//endif;
+			//}
 			if(	$value->visibility == '2' ): ///If menu visibility is published
 				$menu_title[$value->id] = $value->menu_title;
 			endif;
@@ -53,8 +53,28 @@ class Pages extends MY_Controller{
 	}
 	public function edit_page($page_id)
 	{
-		echo $page_id;
+		//echo $page_id;
+		$this->load->helper('form');
+		$menu_title = $this->menu($page_id);
+		//echo $page_id; exit;
+		$selected =  $this->pagemodel->get_page('id', $page_id, '*');
+		//echo '<pre>';
+		$page_data = $selected[0];
+		$this->load->view('admin/page/page_form', compact('menu_title','page_data') );
 		//$this->load->view('admin/page/index');
+	}
+	public function update_page($page_id)
+	{
+		$this->load->library('form_validation');
+		if($this->form_validation->run('add_page_rules')): ///Checking form validation rule
+			$this->load->model('pagemodel');
+			return $this->_falshAndRedirect($this->pagemodel->update($page_id, $this->input->post()), 'Page Updated Successfully', 'Page not Updated, Try Again');
+		else:
+			$menu_title = $this->menu($page_id);
+			$selected =  $this->pagemodel->get_page('id', $page_id, '*');
+			$page_data = $selected[0];
+			$this->load->view('admin/page/page_form', compact('menu_title','page_data') );
+		endif;
 	}
 	public function delete_page($page_id)
 	{
