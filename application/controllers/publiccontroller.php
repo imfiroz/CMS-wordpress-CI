@@ -3,16 +3,12 @@
 class Publiccontroller extends CI_Controller{
 	
 
-	public function index()
+	public function index($menu_id = NULL)
 	{
-		$this->load->model('headermodel');
-		$headerdata = $this->headermodel->get();
-		$this->load->view('public/home', compact('headerdata'));
+		$this->load_page_data ($menu_id ,'public/home', $article = null);
 	}
 	public function blog_list()
 	{
-		$this->load->model('headermodel');
-		$headerdata = $this->headermodel->get();
 		$this->load->model('blogmodel');
 		$this->load->library('pagination');
 		$config = [
@@ -36,17 +32,36 @@ class Publiccontroller extends CI_Controller{
 		];
 		$this->pagination->initialize($config);
 		$articles = $this->blogmodel->articles_list($config['per_page'],$this->uri->segment(3));
-		//echo '<pre>'; print_r($articles); exit;
-		$this->load->view('public/blog', compact('headerdata', 'articles'));
+		
+		$this->load_page_data ($menu_id = NULL ,'public/blog', $articles);
 	}
 	public function blog_details($blog_id)
 	{
-		$this->load->model('headermodel');
-		$headerdata = $this->headermodel->get();
 		$this->load->model('blogmodel');
 		$article = $this->blogmodel->find_article($blog_id);
-		$this->load->view('public/blog_details', compact('headerdata', 'article'));
+		$this->load_page_data ($menu_id = NULL ,'public/blog_details', $article);
 	}
 	
+	private function load_page_data ($menu_id = NULL ,$function_call, $articles = null)
+	{
+		$this->load->model('headermodel');
+		$headerdata = $this->headermodel->get(); //**Getting header title and logo
+		
+		$this->load->model('publicmodel');
+		$menus = $this->publicmodel->get_menu(); //**Getting publish menus
+		
+		$this->load->model('publicmodel');
+		if(	$menu_id	):
+			$page_data = $this->publicmodel->get_page_data($menu_id); //**Loading page data with menu id
+		else:
+			if($menus):
+				$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
+			else:
+				$page_data = NULL; //***If no publish menu found
+			endif; //menus
+		endif;
+		//$this->load->view('public/home', compact('headerdata', 'menus', 'page_data'));
+		$this->load->view($function_call, ['headerdata' => $headerdata, 'menus' => $menus, 'page_data' => $page_data, 'articles' => $articles]);
+	}
 	
 }

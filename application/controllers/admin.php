@@ -6,11 +6,11 @@ class admin extends CI_Controller{
 		if($this->session->userdata('user_id')) //preventing loggedin user to access this page
 			return $this->load->view('admin/dashboard');
 		
-		$this->load->model('headermodel');
-		$headerdata = $this->headermodel->get();
+		///$this->load->model('headermodel');
+		//$headerdata = $this->headermodel->get();
 		$this->load->helper('form');
-		$this->load->view('public/admin_login', compact('headerdata'));
-		
+		//$this->load->view('public/admin_login', compact('headerdata'));
+		$this->load_page_data ($menu_id = NULL ,'public/admin_login', $article = NULL);
 	}
 	public function login_form(){
 		
@@ -50,5 +50,22 @@ class admin extends CI_Controller{
 		//logout and redirected to login page
 		$this->session->unset_userdata('user_id');
 		return redirect('admin');
+	}
+	private function load_page_data ($menu_id = NULL ,$function_call, $articles = null)
+	{
+		$this->load->model('headermodel');
+		$headerdata = $this->headermodel->get(); //**Getting header title and logo
+		
+		$this->load->model('publicmodel');
+		$menus = $this->publicmodel->get_menu(); //**Getting publish menus
+		
+		$this->load->model('publicmodel');
+		if(	$menu_id	):
+			$page_data = $this->publicmodel->get_page_data($menu_id); //**Loading page data with menu id
+		else:
+			$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
+		endif;
+		//$this->load->view('public/home', compact('headerdata', 'menus', 'page_data'));
+		$this->load->view($function_call, ['headerdata' => $headerdata, 'menus' => $menus, 'page_data' => $page_data, 'articles' => $articles]);
 	}
 }

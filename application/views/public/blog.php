@@ -21,8 +21,16 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+<?php //***Publish Menus Display
+if(	isset($menus)	){
+	foreach($menus as $menu)
+	{ 
+		?>
+		<li><?= anchor("publiccontroller/index/{$menu->id}",$menu->menu_title) ?></li>
+		<?php	
+	}
+}
+?>
         <li class="active"><?= anchor('publiccontroller/blog_list','Blog')  ?></li>
         
       </ul>
