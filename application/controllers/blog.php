@@ -88,7 +88,7 @@ class Blog extends MY_Controller
 		}
 		else
 		{
-			redirect("blog/edit_article/{$id}");
+			$this->edit_article($id);
 		}
 	}
 	public function delete_article()

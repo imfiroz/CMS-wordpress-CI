@@ -64,7 +64,7 @@ class Header extends MY_Controller{
 			 
 		}else{
 			//$upload_error = $this->upload->display_errors(); //uploaded error message
-			return redirect("header/edit_header/{$header_id}/");
+			$this->edit_header($header_id);
 		}
 	}
 	public function delete_header($header_id)

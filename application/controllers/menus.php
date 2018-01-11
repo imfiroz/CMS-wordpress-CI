@@ -49,7 +49,7 @@ class Menus extends MY_Controller {
 			
 		else:
 		//If validation failed 
-			$this->load->view('admin/menu/menu_form');
+			$this->add_menu();
 		endif;
 	}
 	public function edit_menu($menu_id)
@@ -57,19 +57,20 @@ class Menus extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->model('menumodel');
 		$menu_data = $this->menumodel->find_menu($menu_id);
-		//echo '<pre>';
-		//print_r($menu_data); exit;
 		$this->load->view('admin/menu/menu_form', compact('menu_data'));
 	}
 	public function update_menu($menu_id)
 	{
-		
-		$this->load->model('menumodel');
-		$post = $this->input->post();
-		unset($post['submit']);
-		return $this->_falshAndRedirect($this->menumodel->update($menu_id, $post), 'Menu updated Successfully', 'Menu not updated, try again');
-		//echo '<pre>';
-		//print_r($this->input->post());
+		$this->load->library('form_validation');
+		if(	$this->form_validation->run('add_menu_rules')	): 
+			$this->load->model('menumodel');
+			$post = $this->input->post();
+			unset($post['submit']);
+			return $this->_falshAndRedirect($this->menumodel->update($menu_id, $post), 'Menu updated Successfully', 'Menu not updated, try again');
+		else:
+		//If validation failed 
+			$this->edit_menu($menu_id);
+		endif;
 	}
 	public function delete_menu($menu_id)
 	{

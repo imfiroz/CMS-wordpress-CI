@@ -47,21 +47,17 @@ class Pages extends MY_Controller{
 			return $this->_falshAndRedirect($this->pagemodel->add($post), 'Page Added Successfully', 'Page not Inserted, Try Again');
 			
 		else:
-			$menu_title = $this->menu();
-			$this->load->view('admin/page/page_form', compact('menu_title'));
+			$this->add_page();
 		endif;
 	}
 	public function edit_page($page_id)
 	{
-		//echo $page_id;
 		$this->load->helper('form');
 		$menu_title = $this->menu($page_id);
-		//echo $page_id; exit;
 		$selected =  $this->pagemodel->get_page('id', $page_id, '*');
-		//echo '<pre>';
 		$page_data = $selected[0];
 		$this->load->view('admin/page/page_form', compact('menu_title','page_data') );
-		//$this->load->view('admin/page/index');
+		
 	}
 	public function update_page($page_id)
 	{
@@ -70,10 +66,7 @@ class Pages extends MY_Controller{
 			$this->load->model('pagemodel');
 			return $this->_falshAndRedirect($this->pagemodel->update($page_id, $this->input->post()), 'Page Updated Successfully', 'Page not Updated, Try Again');
 		else:
-			$menu_title = $this->menu($page_id);
-			$selected =  $this->pagemodel->get_page('id', $page_id, '*');
-			$page_data = $selected[0];
-			$this->load->view('admin/page/page_form', compact('menu_title','page_data') );
+			$this->edit_page($page_id);
 		endif;
 	}
 	public function delete_page($page_id)
