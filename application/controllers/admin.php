@@ -6,8 +6,10 @@ class admin extends CI_Controller{
 		if($this->session->userdata('user_id')) //preventing loggedin user to access this page
 			return $this->load->view('admin/dashboard');
 		
+		$this->load->model('headermodel');
+		$headerdata = $this->headermodel->get();
 		$this->load->helper('form');
-		$this->load->view('public/admin_login');
+		$this->load->view('public/admin_login', compact('headerdata'));
 		
 	}
 	public function login_form(){
@@ -41,7 +43,7 @@ class admin extends CI_Controller{
 			
 		}else{
 			//failed redirected to login page
-			$this->load->view('public/admin_login');
+			$this->index();
 		}
 	}
 	public function logout(){

@@ -4,13 +4,12 @@ class Blogmodel extends CI_Model{
 	
 	public function articles_list($limit, $offset){
 		//getting user id from session
-		$user_id = $this->session->userdata('user_id');
+		//$user_id = $this->session->userdata('user_id');
 		//fetch data form articles
 		$query = $this->db
-							->where('user_id',$user_id)
 							->limit($limit, $offset)
 							->get('articles');
-		
+		//echo '<pre>'; print_r($query->result()); exit;
 		return $query->result();
 	}
 	public function all_articles_list($limit, $offset){
@@ -39,10 +38,8 @@ class Blogmodel extends CI_Model{
 		return $query->num_rows();
 	}
 	public function num_rows(){
-		$user_id = $this->session->userdata('user_id');
-		$query = $this->db
-							->where('user_id',$user_id)
-							->get('articles');
+		
+		$query = $this->db->get('articles');
 		return $query->num_rows();
 	}
 	public function search($search){
