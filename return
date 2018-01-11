@@ -1,0 +1,57 @@
+[1mdiff --git a/application/controllers/blog.php b/application/controllers/blog.php[m
+[1mindex 5b91d78..4c4d4a2 100644[m
+[1m--- a/application/controllers/blog.php[m
+[1m+++ b/application/controllers/blog.php[m
+[36m@@ -62,7 +62,14 @@[m [mclass Blog extends MY_Controller[m
+ 	}[m
+ 	public function edit_article($blog_id)[m
+ 	{[m
+[31m-		echo $blog_id;[m
+[32m+[m		[32m$this->load->helper('form');[m
+[32m+[m		[32m$this->load->model('blogmodel');[m
+[32m+[m		[32m$blog_data = $this->blogmodel->find_article($blog_id);[m
+[32m+[m		[32m$this->load->view('admin/blog/blog_form', compact('blog_data'));[m
+[32m+[m	[32m}[m
+[32m+[m	[32mpublic function update_article($id,array $array)[m
+[32m+[m	[32m{[m
+[32m+[m[41m		[m
+ 	}[m
+ 	public function delete_article()[m
+ 	{[m
+[1mdiff --git a/application/views/admin/blog/blog_form.php b/application/views/admin/blog/blog_form.php[m
+[1mindex 6a457ae..d85fea5 100644[m
+[1m--- a/application/views/admin/blog/blog_form.php[m
+[1m+++ b/application/views/admin/blog/blog_form.php[m
+[36m@@ -18,7 +18,7 @@[m [minclude_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");[m
+ 			<div class="form-group">[m
+ 				<label for="inputEmail" class="col-lg-2 control-label">Title :</label>[m
+ 				<div class="col-lg-10">[m
+[31m-				<?= form_input( ['name'=>'title', 'class'=>'form-control', 'id'=>'inputEmail', 'placeholder'=>'Enter Title', 'value'=>set_value('title')])?>[m
+[32m+[m				[32m<?= form_input( ['name'=>'title', 'class'=>'form-control', 'id'=>'inputEmail', 'placeholder'=>'Enter Title', 'value'=>set_value('title',isset($blog_data) ? $blog_data->title : FALSE )])?>[m
+ 					<span class="help-block">[m
+ 					<?= form_error('title','<p class="text-danger">','</p>') ?>[m
+ 					</span>[m
+[36m@@ -38,7 +38,7 @@[m [minclude_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");[m
+ 			<div class="form-group">[m
+ 			  <label for="textArea" class="col-lg-2 control-label">Body :</label>[m
+ 			  <div class="col-lg-10">[m
+[31m-				<?= form_textarea( ['name'=>'body', 'class'=>'form-control', 'id'=>'textArea', 'rows'=>'3', 'value'=>set_value('body')])?>[m
+[32m+[m				[32m<?= form_textarea( ['name'=>'body', 'class'=>'form-control', 'id'=>'textArea', 'rows'=>'3', 'value'=>set_value('body',isset($blog_data) ? $blog_data->body : FALSE )])?>[m
+ 					<span class="help-block">[m
+ 					<?= form_error('body','<p class="text-danger">','</p>') ?>[m
+ 					</span>[m
+[1mdiff --git a/application/views/admin/page/page_form.php b/application/views/admin/page/page_form.php[m
+[1mindex 22b3158..cc1661d 100644[m
+[1m--- a/application/views/admin/page/page_form.php[m
+[1m+++ b/application/views/admin/page/page_form.php[m
+[36m@@ -36,9 +36,7 @@[m [minclude_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");[m
+ 					<div class="form-group">[m
+ 					  <label for="textArea" class="col-lg-2 control-label">Content</label>[m
+ 					  <div class="col-lg-10">[m
+[31m-						<textarea name="content" class="form-control" rows="3" id="textArea">[m
+[31m-							<?= set_value('content', isset($page_data) ? $page_data->content : false) ?>[m
+[31m-						</textarea>[m
+[32m+[m					[41m  [m	[32m<?= form_textarea( ['name'=>'content', 'class'=>'form-control', 'id'=>'textArea', 'rows'=>'3', 'value'=>set_value('body',isset($page_data) ? $page_data->content : FALSE )])?>[m
+ 						<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>[m
+ 					  </div>[m
+ 					</div>[m

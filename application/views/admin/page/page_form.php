@@ -12,7 +12,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 				<?= form_open(
 					isset($page_data) ? "pages/update_page/{$page_data->id}" : "pages/save_page", 'class="form-horizontal"'); ?>
 				<?= form_hidden('user_id', $this->session->userdata('user_id'))?>
-			  	<?= form_hidden(isset($page_data) ? 'modified' : 'created', date('Y-m-d H:i:s'))?>
+			  	<?= form_hidden( isset($page_data) ? 'modified' : 'created', date('Y-m-d H:i:s'))?>
 				  <fieldset>
 					<legend><?= isset($page_data) ? "Edit Page" : "Add Page" ?></legend>
 					<hr>
@@ -36,9 +36,7 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 					<div class="form-group">
 					  <label for="textArea" class="col-lg-2 control-label">Content</label>
 					  <div class="col-lg-10">
-						<textarea name="content" class="form-control" rows="3" id="textArea">
-							<?= set_value('content', isset($page_data) ? $page_data->content : false) ?>
-						</textarea>
+					  	<?= form_textarea( ['name'=>'content', 'class'=>'form-control', 'id'=>'textArea', 'rows'=>'3', 'value'=>set_value('body',isset($page_data) ? $page_data->content : FALSE )])?>
 						<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
 					  </div>
 					</div>

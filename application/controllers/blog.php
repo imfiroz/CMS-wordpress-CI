@@ -62,7 +62,34 @@ class Blog extends MY_Controller
 	}
 	public function edit_article($blog_id)
 	{
-		echo $blog_id;
+		$this->load->helper('form');
+		$this->load->model('blogmodel');
+		$blog_data = $this->blogmodel->find_article($blog_id);
+		$this->load->view('admin/blog/blog_form', compact('blog_data'));
+	}
+	public function update_article($id)
+	{
+		$config = [
+			    'upload_path'          => './upload_image',
+                'allowed_types'        => 'gif|jpg|png|jpeg',
+		];
+		$this->load->library('upload',$config);
+		$this->load->library('form_validation');
+		if(	$this->form_validation->run('add_blog_rules'))
+		{
+			$post = $this->input->post();
+			if($this->upload->do_upload('image')):
+				$data = $this->upload->data();
+				$image_path = base_url("upload_image/".$data['raw_name'].$data['file_ext']);
+				$post['image'] = $image_path; //adding image path to post variable
+			endif;
+			$this->load->model('blogmodel');
+			return $this->_falshAndRedirect($this->blogmodel->update_article($id,$post), 'Blog Updated Succcessfully', 'Blog Not Updated, Try Again');
+		}
+		else
+		{
+			redirect("blog/edit_article/{$id}");
+		}
 	}
 	public function delete_article()
 	{
