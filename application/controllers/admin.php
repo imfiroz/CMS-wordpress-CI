@@ -63,7 +63,11 @@ class admin extends CI_Controller{
 		if(	$menu_id	):
 			$page_data = $this->publicmodel->get_page_data($menu_id); //**Loading page data with menu id
 		else:
-			$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
+			if(	$menus	): //Checking if menu found
+				$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
+			else:
+				$page_data = NULL; //***If no publish menu found
+			endif; 
 		endif;
 		//$this->load->view('public/home', compact('headerdata', 'menus', 'page_data'));
 		$this->load->view($function_call, ['headerdata' => $headerdata, 'menus' => $menus, 'page_data' => $page_data, 'articles' => $articles]);

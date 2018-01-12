@@ -8,7 +8,7 @@ class headermodel extends CI_Model{
 		{ //checking number of rows
 			return $query->row(); //returning data
 		}else{
-			return FALSE; 
+			return NULL; 
 		}
 	}
 	public function add_header($array)

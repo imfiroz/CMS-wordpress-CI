@@ -45,6 +45,7 @@ if(	isset($menus)	){
   </div>
 </nav>
 <div class="container">
+<!--Showing Page Data Here-->
 	<?php if(isset($page_data)): ?>
 		<?php  $current_menu_id = $page_data->menu_id; ?>
 		<h2><?= $page_data->title ?></h2>
@@ -57,6 +58,7 @@ if(	isset($menus)	){
 		<p>Page not added or maybe not published yet.</p>
 		</div>
 	<?php endif; ?>
+<!--Page Data Here End-->
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<?= base_url('assets/js/bootstrap.min.js')?>"></script>

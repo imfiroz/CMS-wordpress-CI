@@ -46,7 +46,6 @@ class Publiccontroller extends CI_Controller{
 	{
 		$this->load->model('headermodel');
 		$headerdata = $this->headermodel->get(); //**Getting header title and logo
-		
 		$this->load->model('publicmodel');
 		$menus = $this->publicmodel->get_menu(); //**Getting publish menus
 		
@@ -54,7 +53,7 @@ class Publiccontroller extends CI_Controller{
 		if(	$menu_id	):
 			$page_data = $this->publicmodel->get_page_data($menu_id); //**Loading page data with menu id
 		else:
-			if($menus):
+			if($menus)://Checking if menu found
 				$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
 			else:
 				$page_data = NULL; //***If no publish menu found

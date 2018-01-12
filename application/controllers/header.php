@@ -40,7 +40,6 @@ class Header extends MY_Controller{
 		$header_data = $this->headermodel->find_header($header_id);
 		$this->load->view('admin/header/edit_header', compact('header_data'));
 	}
-	
 	public function update_header_data($header_id){
 		
 		$config = [ //file upload rules
