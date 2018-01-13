@@ -74,9 +74,11 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 							  <td><?= $count++ ?></td>
 							  <td><!--Select Menu Dropdown Form-->
 							  <?= form_open("plugins/change_menu/{$plugin_data->id}") ?>
+							  <?php if(isset($menu_title)): ?>
 							  <div class="form-group">
 								  <div class="input-group">
 								  	<?= form_hidden('modified', date('Y-m-d H:i:s'))?>
+								  	
 									<?= form_dropdown('menu_id', $menu_title, $plugin_data->menu_id, ['class' => 'form-control']); ?>
 									<span class="input-group-btn">
 									  <button class="btn btn-default" type="submit">Submit</button>
@@ -84,6 +86,9 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 								  </div>
 							  </div>
 							  <?= form_close() ?>
+							  <?php else: ?>
+							  <p>Menu not added yet, add menu first!</p>
+							  <?php endif; ?>
 							  </td>
 							  <td><?=  anchor("imageslider", 'Configure Plugin',['class'=> 'btn btn-info']) ?></td>
 							</tr>

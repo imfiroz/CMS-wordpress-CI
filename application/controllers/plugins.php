@@ -11,7 +11,7 @@ class Plugins extends MY_Controller{
 			if(	$value->visibility == '2' ): ///If menu visibility is published
 				$menu_title[$value->id] = $value->menu_title;
 			else:
-				$menu_title = array();
+				$menu_title =NULL;
 			endif;
 		endforeach;
 		

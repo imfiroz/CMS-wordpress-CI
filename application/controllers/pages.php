@@ -19,21 +19,17 @@ class Pages extends MY_Controller{
 		//Storing array key as menu id and 
 		$this->load->model('pagemodel');
 		$menu_pb = array();
-		foreach(	$menu_data as $value	):
-			//$page_data =  $this->pagemodel->get_page('menu_id', $value->id, 'visibility'); 
-			//foreach(	$page_data as $pg_visibility	) //Getting page visiblity with that menu id
-			//{
-				//if(	$pg_visibility->visibility == 2 ):///If page visibility is published with that menu id then removed
-					//$menu_pb[$value->id] = $value->menu_title;
-
-				//endif;
-			//}
-			if(	$value->visibility == '2' ): ///If menu visibility is published
-				$menu_title[$value->id] = $value->menu_title;
-			endif;
-		endforeach;
-		$result = array_diff_assoc($menu_title,$menu_pb); 
-		return $result;
+		if($menu_data):
+			foreach(	$menu_data as $value	):
+				if(	$value->visibility == '2' ): ///If menu visibility is published
+					$menu_title[$value->id] = $value->menu_title;
+				endif;
+			endforeach;
+			return $menu_title;
+		else:
+			return $menu_title = NULL;
+		endif;
+		
 	}
 	public function save_page()
 	{
@@ -53,7 +49,7 @@ class Pages extends MY_Controller{
 	public function edit_page($page_id)
 	{
 		$this->load->helper('form');
-		$menu_title = $this->menu($page_id);
+		$menu_title = $this->menu();
 		$selected =  $this->pagemodel->get_page('id', $page_id, '*');
 		$page_data = $selected[0];
 		$this->load->view('admin/page/page_form', compact('menu_title','page_data') );

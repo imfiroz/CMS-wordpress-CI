@@ -2,16 +2,26 @@
 <html>
 <head>
 <title>CMS</title>
+
 <meta property="og:url"           content="<?= current_url() ?>" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="<?= $articles->title ?>" />
 <meta property="og:description"   content="<?= $articles->body ?>" />
-<meta charset="utf-8">
+<meta property="og:image"         content="<?= $articles->image ?>" />
 
 <?= link_tag('assets/css/bootstrap.min.css') ?>
 </head>
 <body>
-
+<!--Facebook Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--Facebook Script-->
 <nav class="navbar navbar-inverse">
  <?= img(array('src' => $headerdata->logo_path, 'width' => '60', 'height'=> '60')); ?>
   <div class="container-fluid">
@@ -60,11 +70,9 @@ if(	isset($menus)	){
 			<div class="col-lg-6">
 				
 				<p><?= $articles->body ?></p>
-				
 				<!-- Your share button code -->
-			  		<?= anchor("http://www.facebook.com/sharer/sharer.php?s=100&
-				  p[url]='".current_url()."'&p[images][0]={$articles->image}&p[summary]={$articles->body}",'Share on facebook', ['class' => 'btn btn-info btn-xs'])  ?>
-				 
+				  <div class="fb-share-button" data-href="<?= current_url() ?>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode(current_url()) ?>&amp;src=sdkpreparse">Share</a></div>
+				 <!-- Your share button code -->
 			</div>
 		</div>
 	</div>

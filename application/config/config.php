@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = '';
-//$config['base_url'] = 'https://firozbaksh.000webhostapp.com/';
+//$config['base_url'] = 'http://firozbaksh.1free-host.com/	';
 
 /*
 |--------------------------------------------------------------------------

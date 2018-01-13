@@ -60,6 +60,7 @@ class Publiccontroller extends CI_Controller{
 			//**loading slider on default page
 				$slider_data = $this->image_slider($menus[0]->id);
 			else:
+				$slider_data = NULL;
 				$page_data = NULL; //***If no publish menu found
 			endif; //menus
 		endif;

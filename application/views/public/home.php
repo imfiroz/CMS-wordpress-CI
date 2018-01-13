@@ -60,7 +60,7 @@ if(	isset($menus)	){
 		<div class="carousel-inner">
 		   <?php $count = 0; foreach($slider_data as $slide_data):  ?>
 			<div <?= ($count == 0) ? 'class = "item active"' : 'class="item"' ?>>
-			  <img src="http://placehold.it/800x400" alt="...">
+			  <img src="<?= $slide_data->image_path ?>" alt="...">
 			  <div class="carousel-caption">
 				<h2><?= $slide_data->heading ?></h2>
 			  </div>
@@ -76,6 +76,7 @@ if(	isset($menus)	){
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
 </div>
+<hr>
 <?php endif; ?>
 <!--Slider End-->
 <!--Showing Page Data Here-->
