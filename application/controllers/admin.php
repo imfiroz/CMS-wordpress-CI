@@ -4,7 +4,7 @@ class admin extends CI_Controller{
 	
 	public function index(){
 		if($this->session->userdata('user_id')) //preventing loggedin user to access this page
-			return $this->load->view('admin/dashboard');
+		{return $this->load->view('admin/dashboard'); }
 		
 		///$this->load->model('headermodel');
 		//$headerdata = $this->headermodel->get();
@@ -33,12 +33,14 @@ class admin extends CI_Controller{
 				//flashing message for success login 
 				
 				$this->session->set_flashdata('loggin_success', 'Loggin successful');
-				return redirect('admin');
+				//return redirect('admin');
+				return $this->index();
 			}else{
 				//cradentials not valid
 				//flashing invalid login message to login page 
 				$this->session->set_flashdata('loggin_invalid', 'Invalid Username and Password');
-				return redirect('admin');
+				//return redirect('admin');
+				return $this->index();
 			}
 			
 		}else{

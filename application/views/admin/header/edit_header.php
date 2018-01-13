@@ -1,6 +1,6 @@
 <?php include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php"); ?>
 <div class="container">
-	<div class="col-lg-7 col-md-3 col-sm-4">
+	<div class="col-lg-9 col-md-3 col-sm-4">
 	<?= form_open_multipart("header/update_header_data/{$header_data->id}", 'class="form-horizontal"'); ?> 
 		  <?= form_hidden('user_id', $this->session->userdata('user_id'))?>
 		  <?= form_hidden('modified', date('Y-m-d H:i:s'))?>

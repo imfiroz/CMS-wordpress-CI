@@ -43,7 +43,14 @@ $config = [
 												'field' => 'body',
 												'lable' => 'Body',
 												'rules' => 'required',
-											]
+											],
 										],
+			'add_slide_rules'  => 	 [
+											[
+												'field' => 'heading',
+												'lable' => 'Heading',
+												'rules' => 'required',
+											],
+									  ],
 
 	];

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>CMS</title>
 <?= link_tag('assets/css/bootstrap.min.css') ?>
+<?= link_tag('assets/css/slider.css') ?>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -45,6 +46,57 @@ if(	isset($menus)	){
   </div>
 </nav>
 <div class="container">
+
+
+<!--Slider start-->
+ <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="http://placehold.it/800x400" alt="...">
+          <div class="carousel-caption">
+            <h2>Heading</h2>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/800x400" alt="...">
+          <div class="carousel-caption">
+            <h2>Heading</h2>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/800x400" alt="...">
+          <div class="carousel-caption">
+            <h2>Heading</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+</div>
+<!--Slider End-->
+
+
+
+
+
+
+
+
+
 <!--Showing Page Data Here-->
 	<?php if(isset($page_data)): ?>
 		<?php  $current_menu_id = $page_data->menu_id; ?>

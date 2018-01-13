@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 ?>
 <div class="container">
-	<div class="col-lg-8 col-md-3 col-sm-4">
+	<div class="col-lg-9 col-md-3 col-sm-4">
 	
 		<div class="panel panel-default">
 			<div class="panel-heading">

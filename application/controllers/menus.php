@@ -19,7 +19,6 @@ class Menus extends MY_Controller {
 		if(	$this->form_validation->run('add_menu_rules')	): 
 		//Form validation cheacking through custom library rule
 			$this->load->model('menumodel');
-			$this->menumodel->get();
 			$post = $this->input->post();
 			if( $rows = $this->menumodel->get() )
 			{ //Add menu order
