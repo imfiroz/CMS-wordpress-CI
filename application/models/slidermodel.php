@@ -3,7 +3,9 @@ class Slidermodel extends CI_Model
 {
 	public function get()
 	{
-		$query = $this->db->get('imageslider');
+		$query = $this->db
+						->order_by('order', 'ASC')
+						->get('imageslider');
 		return $query->result();
 	}
 	public function get_num_row()

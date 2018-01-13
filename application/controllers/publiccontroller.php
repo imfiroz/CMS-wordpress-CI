@@ -52,15 +52,34 @@ class Publiccontroller extends CI_Controller{
 		$this->load->model('publicmodel');
 		if(	$menu_id	):
 			$page_data = $this->publicmodel->get_page_data($menu_id); //**Loading page data with menu id
+			//**loading slider data
+				$slider_data = $this->image_slider($menu_id);
 		else:
 			if($menus)://Checking if menu found
 				$page_data = $this->publicmodel->get_page_data($menus[0]->id); //**Loading default first page id
+			//**loading slider on default page
+				$slider_data = $this->image_slider($menus[0]->id);
 			else:
 				$page_data = NULL; //***If no publish menu found
 			endif; //menus
 		endif;
 		//$this->load->view('public/home', compact('headerdata', 'menus', 'page_data'));
-		$this->load->view($function_call, ['headerdata' => $headerdata, 'menus' => $menus, 'page_data' => $page_data, 'articles' => $articles]);
+		$this->load->view($function_call, ['headerdata' => $headerdata, 'menus' => $menus, 'page_data' => $page_data, 'articles' => $articles,'slider_data' => $slider_data]);
+	}
+	private function image_slider($menu_id)
+	{
+		$this->load->model('pluginmodel');
+		$this->load->model('slidermodel');
+		//**Getting  Activated plugin id
+		$plugin_id = $this->pluginmodel->get_by_field('menu_id',$menu_id,'id');
+		if($plugin_id): //Plugin is activated
+		return	$this->slidermodel->get();
+		else:
+		return	NULL;
+		endif;
+		//Getting plugin slider data
+		//echo '<pre>';
+		//print_r($plugin_id->id); exit;
 	}
 	
 }

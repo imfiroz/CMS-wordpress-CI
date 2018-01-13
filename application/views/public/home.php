@@ -46,39 +46,28 @@ if(	isset($menus)	){
   </div>
 </nav>
 <div class="container">
-
-
+<?php if($slider_data): ?>
 <!--Slider start-->
  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+       <?php $count = 0; foreach($slider_data as $slide_data): ?>
+        <li data-target="#carousel-example-generic" data-slide-to="<?= $count ?>" "<?= ($count == 0) ? 'class = item active' : '' ?>"></li>
+       <?php $count ++; endforeach; ?>
       </ol>
 
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="http://placehold.it/800x400" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://placehold.it/800x400" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://placehold.it/800x400" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-      </div>
-
+		<div class="carousel-inner">
+		   <?php $count = 0; foreach($slider_data as $slide_data):  ?>
+			<div <?= ($count == 0) ? 'class = "item active"' : 'class="item"' ?>>
+			  <img src="http://placehold.it/800x400" alt="...">
+			  <div class="carousel-caption">
+				<h2><?= $slide_data->heading ?></h2>
+			  </div>
+			</div>
+		   <?php $count++; endforeach; ?>
+		</div>
+     
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -87,16 +76,8 @@ if(	isset($menus)	){
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
 </div>
+<?php endif; ?>
 <!--Slider End-->
-
-
-
-
-
-
-
-
-
 <!--Showing Page Data Here-->
 	<?php if(isset($page_data)): ?>
 		<?php  $current_menu_id = $page_data->menu_id; ?>
