@@ -36,9 +36,9 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "../admin_header.php");
 			</div>
 			
 			<div class="form-group">
-			  <label for="textArea" id="editor" class="col-lg-2 control-label">Body :</label>
+			  <label for="textArea"  class="col-lg-2 control-label">Body :</label>
 			  <div class="col-lg-10">
-				<?= form_textarea( ['name'=>'body', 'class'=>'form-control', 'id'=>'textArea', 'rows'=>'3', 'value'=>set_value('body',isset($blog_data) ? $blog_data->body : FALSE )])?>
+				<?= form_textarea( ['name'=>'body', 'class'=>'form-control', 'id'=>'editor', 'rows'=>'3', 'height'=>'10', 'value'=>set_value('body',isset($blog_data) ? $blog_data->body : FALSE )])?>
 					<span class="help-block">
 					<?= form_error('body','<p class="text-danger">','</p>') ?>
 					</span>
