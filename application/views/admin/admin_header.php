@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>CMS</title>
 <?= link_tag('assets/css/bootstrap.min.css') ?>
+<script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
 </head>
 <body>
 
